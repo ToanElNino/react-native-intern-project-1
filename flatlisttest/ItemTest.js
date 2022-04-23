@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import EventComment from '../components/userCityNotification/event/EventComment';
+import NotificationImage from '../components/userCityNotification/notification/NotificationImage';
 import {
   Modal,
   StyleSheet,
@@ -45,6 +46,10 @@ const ItemTest = ({title}) => {
             <ScrollView style={{maxHeight: 300}}>
               <Text>{'- Notification: ' + title.name}</Text>
               <Text>{'- Content: ' + title.data}</Text>
+              {title.fileUrl && <NotificationImage url={title.fileUrl} />}
+              <Text style={styles.modalText}>
+                {'- Time: ' + title.creationTime.substring(0, 10)}
+              </Text>
               {/* <Text>{'- Time: ' + title.substring(0, 10)}</Text> */}
             </ScrollView>
             <View

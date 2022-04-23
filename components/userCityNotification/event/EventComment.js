@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 10,
-    padding: 20,
+    padding: 12,
     elevation: 2,
   },
   buttonOpen: {
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: '#3A5BB3',
-    marginTop: 10,
   },
   textStyle: {
     color: 'white',

@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
+import NotificationImage from './NotificationImage';
 import {
   Modal,
   StyleSheet,
@@ -8,20 +9,28 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import NotificationImage from './NotificationImage';
-
-const NotificationItem = ({news, count}) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const NotificationItem = ({title}) => {
+  console.log(title);
+  const [showEvent, setShowEvent] = useState(false);
   return (
-    <View style={styles.centeredView}>
+    <View style={styles.itemContainer}>
+      {/* <Text>{title.countComment}</Text> */}
+      <View style={styles.item}>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setShowEvent(true)}>
+          <Text style={styles.name}>{'- ' + title.name}</Text>
+          <Text>{'   -Time: ' + title.creationTime.substring(0, 10)}</Text>
+        </Pressable>
+      </View>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={showEvent}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setShowEvent(!showEvent);
         }}>
-        <View style={styles.centeredView}>
+        <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text
               style={{
@@ -34,40 +43,66 @@ const NotificationItem = ({news, count}) => {
               Detail:
             </Text>
             <ScrollView style={{maxHeight: 300}}>
+              <Text>{'- Notification: ' + title.name}</Text>
+              <Text>{'- Content: ' + title.data}</Text>
+              {title.fileUrl && <NotificationImage url={title.fileUrl} />}
               <Text style={styles.modalText}>
-                {'- Notification: ' + news.name}
+                {'- Time: ' + title.creationTime.substring(0, 10)}
               </Text>
-              <Text style={styles.modalText}>{'- Content: ' + news.data}</Text>
-              {news.fileUrl && <NotificationImage url={news.fileUrl} />}
-              <Text style={styles.modalText}>
-                {'- Time: ' + news.creationTime.substring(0, 10)}
-              </Text>
+              {/* <Text>{'- Time: ' + title.substring(0, 10)}</Text> */}
             </ScrollView>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide detail</Text>
-            </Pressable>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Pressable
+                style={styles.hideDetailBtn}
+                onPress={() => setShowEvent(!showEvent)}>
+                <Text style={styles.textStyle}>Hide details</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}>
-        <Text>{count + 1 + ' - ' + news.name}</Text>
-        <Text>{'   - Time: ' + news.creationTime.substring(0, 10)}</Text>
-      </Pressable>
     </View>
   );
 };
-
+export default NotificationItem;
 const styles = StyleSheet.create({
-  centeredView: {
+  itemContainer: {
+    maxHeight: 120,
+    margin: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 0,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  item: {
+    padding: 15,
+    marginVertical: 8,
+    marginHorizontal: 10,
+  },
+  title: {
+    fontSize: 32,
+  },
+  name: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  modalContainer: {
     flex: 1,
     justifyContent: 'center',
     marginHorizontal: 10,
-    marginTop: 5,
-    marginBottom: 20,
+    paddingVertical: 10,
   },
   modalView: {
     margin: 10,
@@ -83,26 +118,25 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    borderRadius: 10,
-    padding: 20,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#f8f8ff',
-  },
   buttonClose: {
     backgroundColor: '#3A5BB3',
     marginTop: 10,
+    paddingVertical: 10,
+    width: 150,
   },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  modalText: {
-    marginBottom: 5,
+  hideDetailBtn: {
+    marginTop: 60,
+    borderRadius: 10,
+    padding: 20,
+    elevation: 2,
+    paddingVertical: 12,
+    paddingHorizontal: 5,
+    width: 120,
+    backgroundColor: '#3A5BB3',
   },
 });
-
-export default NotificationItem;

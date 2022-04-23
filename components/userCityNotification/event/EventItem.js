@@ -18,7 +18,7 @@ const EventItem = ({title}) => {
         <Pressable
           style={[styles.button, styles.buttonOpen]}
           onPress={() => setShowEvent(true)}>
-          <Text style={styles.name}>{1 + ' - ' + title.name}</Text>
+          <Text style={styles.name}>{'- ' + title.name}</Text>
           <Text>{'   -Time: ' + title.creationTime.substring(0, 10)}</Text>
         </Pressable>
       </View>
@@ -56,7 +56,7 @@ const EventItem = ({title}) => {
               <Pressable
                 style={styles.hideDetailBtn}
                 onPress={() => setShowEvent(!showEvent)}>
-                <Text style={styles.textStyle}>Hide detail</Text>
+                <Text style={styles.textStyle}>Hide details</Text>
               </Pressable>
             </View>
           </View>

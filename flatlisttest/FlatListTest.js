@@ -11,12 +11,11 @@ import {
   StatusBar,
   ActivityIndicator,
 } from 'react-native';
-import ItemTest from './ItemTest';
 import RenderItemTest from './renderItemTest';
 
 const ListTest = () => {
   const userData = useSelector(userDataSelector);
-  const [events, setEvents] = useState([]);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const url =
@@ -24,7 +23,7 @@ const ListTest = () => {
     let config = {
       headers: {Authorization: `Bearer ${userData.accessToken}`},
       params: {
-        Type: 2,
+        Type: 1,
       },
     };
     async function fetchEvents() {
@@ -36,16 +35,15 @@ const ListTest = () => {
           return JSON.parse(responseRequestResponse).result.data;
         })
         .catch(error => console.log(error));
-      setEvents(data);
+      setNotifications(data);
     }
     fetchEvents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData.accessToken]);
   return (
     <SafeAreaView style={styles.container}>
-      {events.length ? (
+      {notifications.length ? (
         <FlatList
-          data={events}
+          data={notifications}
           renderItem={RenderItemTest}
           keyExtractor={item => item.id}
         />

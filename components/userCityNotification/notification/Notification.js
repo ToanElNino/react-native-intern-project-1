@@ -1,13 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {userDataSelector} from '../../../features/authentication/userSlice';
-import NotificationList from './NotificationList';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+  ActivityIndicator,
+} from 'react-native';
+import RenderNotificationItem from './NotificationList';
 
 const Notification = () => {
   const userData = useSelector(userDataSelector);
-  const [notificationUserTenant, setNotificationUserTenant] = useState([]);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const url =
@@ -18,42 +26,49 @@ const Notification = () => {
         Type: 1,
       },
     };
-    async function fetchNotifications() {
+    async function fetchEvents() {
       const data = await axios
         .get(url, config)
-        .then(function (responseRequestResponse) {
-          return JSON.parse(
-            responseRequestResponse.request._response,
-          ).result.data;
+        .then(response => response.request._response)
+        .then(responseRequestResponse => {
+          console.log(JSON.parse(responseRequestResponse).result.data);
+          return JSON.parse(responseRequestResponse).result.data;
         })
         .catch(error => console.log(error));
-      setNotificationUserTenant(data);
+      setNotifications(data);
     }
-    fetchNotifications();
+    fetchEvents();
   }, [userData.accessToken]);
   return (
-    <View style={styles.notificationContainer}>
-      {/* <Text style={styles.NotificationTitle}>Notifications</Text> */}
-      {notificationUserTenant.length ? (
-        <NotificationList list={notificationUserTenant} />
+    <SafeAreaView style={styles.container}>
+      {notifications.length ? (
+        <FlatList
+          data={notifications}
+          renderItem={RenderNotificationItem}
+          keyExtractor={item => item.id}
+        />
       ) : (
         <ActivityIndicator size="large" />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  notificationContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    marginBottom: 20,
   },
-  NotificationTitle: {
-    marginTop: 10,
-    color: '#242A53',
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginLeft: 15,
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
   },
 });
+
 export default Notification;
