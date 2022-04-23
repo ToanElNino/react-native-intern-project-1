@@ -43,20 +43,6 @@ export default function App() {
               },
             }}
           />
-          {/* <Stack.Screen
-            name="Todo list"
-            component={TodoList}
-            options={{
-              title: 'Todo list', //Set Header Title
-              headerStyle: {
-                backgroundColor: '#3A5BB3', //Set Header color
-              },
-              headerTintColor: '#fff', //Set Header text color
-              headerTitleStyle: {
-                fontWeight: 'bold', //Set Header text style
-              },
-            }}
-          /> */}
           <Stack.Screen
             name="Home"
             component={Home}
