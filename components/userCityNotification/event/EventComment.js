@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   buttonOpen: {
     paddingVertical: 12,
     paddingHorizontal: 5,
-    width: 150,
+    width: 120,
     backgroundColor: '#3A5BB3',
   },
   buttonClose: {

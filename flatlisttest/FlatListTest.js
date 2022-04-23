@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
-import {userDataSelector} from '../../../features/authentication/userSlice';
+import {userDataSelector} from '../features/authentication/userSlice';
 import {
   SafeAreaView,
   View,
@@ -11,9 +11,10 @@ import {
   StatusBar,
   ActivityIndicator,
 } from 'react-native';
-import RenderEventItem from './EventList';
+import ItemTest from './ItemTest';
+import RenderItemTest from './renderItemTest';
 
-const Event = () => {
+const ListTest = () => {
   const userData = useSelector(userDataSelector);
   const [events, setEvents] = useState([]);
 
@@ -31,19 +32,21 @@ const Event = () => {
         .get(url, config)
         .then(response => response.request._response)
         .then(responseRequestResponse => {
+          console.log(JSON.parse(responseRequestResponse).result.data);
           return JSON.parse(responseRequestResponse).result.data;
         })
         .catch(error => console.log(error));
       setEvents(data);
     }
     fetchEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData.accessToken]);
   return (
     <SafeAreaView style={styles.container}>
       {events.length ? (
         <FlatList
           data={events}
-          renderItem={RenderEventItem}
+          renderItem={RenderItemTest}
           keyExtractor={item => item.id}
         />
       ) : (
@@ -57,7 +60,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    marginBottom: 20,
   },
   item: {
     backgroundColor: '#f9c2ff',
@@ -70,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Event;
+export default ListTest;

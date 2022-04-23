@@ -3,10 +3,11 @@ import {useWindowDimensions} from 'react-native';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import User from '../User/User';
 import TodoList from '../Todo/TodoList';
+import ListTest from '../../flatlisttest/FlatListTest';
 
 const renderScene = SceneMap({
-  first: User,
-  second: TodoList,
+  first: ListTest,
+  second: User,
 });
 
 export default function UserScreen() {

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import EventComment from './EventComment';
+import EventComment from '../components/userCityNotification/event/EventComment';
 import {
   Modal,
   StyleSheet,
@@ -9,7 +9,8 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-const EventItem = ({title}) => {
+const ItemTest = ({title}) => {
+  console.log(title);
   const [showEvent, setShowEvent] = useState(false);
   return (
     <View style={styles.itemContainer}>
@@ -65,7 +66,7 @@ const EventItem = ({title}) => {
     </View>
   );
 };
-export default EventItem;
+export default ItemTest;
 const styles = StyleSheet.create({
   itemContainer: {
     maxHeight: 120,
