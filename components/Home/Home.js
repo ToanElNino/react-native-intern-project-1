@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import CityNewsScreen from '../userCityNotification/CityNewsScreen';
 import UserScreen from '../UserScreen/UserScreen';
+import {SmartSocialScreen} from '../../Screen/smartSocialScreen/SmartSocialScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,6 +70,41 @@ export default function Home() {
               <Text
                 style={{color: focused ? '#3A5BB3' : '#a9a9a9', fontSize: 12}}>
                 CITY NEWS
+              </Text>
+            </View>
+          ),
+          title: 'City news', //Set Header Title
+          headerStyle: {
+            backgroundColor: '#3A5BB3', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Smart social"
+        component={SmartSocialScreen}
+        options={{
+          showLabel: false,
+          headerShown: false,
+          // tabBarStyle: {display: 'none'},
+          tabBarIcon: ({focused}) => (
+            <View style={styles.tabContainer}>
+              <Image
+                source={require('../../assets/Home/CityNews.png')}
+                resizeMode="contain"
+                style={{
+                  width: 30,
+                  height: 30,
+                  tintColor: focused ? '#3A5BB3' : '#a9a9a9',
+                }}
+              />
+              <Text
+                style={{color: focused ? '#3A5BB3' : '#a9a9a9', fontSize: 12}}>
+                Smart social
               </Text>
             </View>
           ),
