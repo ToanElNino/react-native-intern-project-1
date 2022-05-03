@@ -63,17 +63,13 @@ const styles = StyleSheet.create({
 
   restaurantDetail: {
     marginLeft: 20,
-    // width: '80%',
   },
-
-  //////
   name: {
     fontSize: 15,
     color: '#00bfff',
   },
   address: {
     fontSize: 13,
-    // color: '#00bfff'
   },
   phoneNumber: {
     fontSize: 14,
