@@ -39,8 +39,6 @@ export const SmartSocialNearList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'white',
-    marginTop: 20,
     padding: 10,
     borderRadius: 10,
   },
@@ -49,12 +47,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
     marginHorizontal: 10,
-  },
-  txtInputButtonImage: {
-    // marginTop: 5,
-    height: 10,
-    width: 10,
-    // resizeMode: 'contain',
   },
   itemListContainer: {
     marginHorizontal: 0,

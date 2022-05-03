@@ -1,14 +1,7 @@
 import React from 'react';
+import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
 
 export const SmartSocialSearchInput = () => {
   return (
@@ -33,7 +26,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    // backgroundColor: 'red',
   },
   txtInput: {
     marginTop: 10,
@@ -44,7 +36,6 @@ const styles = StyleSheet.create({
   },
   txtInputButtonImage: {
     backgroundColor: 'blue',
-    // backgroundColor:'blue',
     marginTop: 5,
     height: '25%',
     resizeMode: 'center',

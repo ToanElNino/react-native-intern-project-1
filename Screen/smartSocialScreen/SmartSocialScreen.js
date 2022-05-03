@@ -15,9 +15,9 @@ export const SmartSocialScreen = () => {
         <View>
           <SmartSocialBanner />
         </View>
-        {/* <View>
+        <View>
           <SmartSocialSaleList />
-        </View> */}
+        </View>
         <View>
           <SmartSocialNearList />
         </View>

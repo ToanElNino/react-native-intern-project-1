@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginLayout from './components/Auth/LogIn';
 import SignUpLayout from './components/Auth/SignUp';
 import Home from './components/Home/Home';
-// import TestAPI from './components/TestAPI/TestAPI';
 import {Provider} from 'react-redux';
 import store from './app/store';
 

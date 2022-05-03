@@ -6,16 +6,17 @@ export const SmartSocialBanner = () => {
     <View>
       <Image
         style={styles.bannerImage}
-        source={require('../../assets/Home/smartSocailScreen/bannerImage.jpg')}
+        source={{
+          uri: 'https://halotravel.vn/wp-content/uploads/2021/10/san-sale-shopee.png',
+        }}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
   bannerImage: {
-    // marginTop: 5,
-    resizeMode: 'repeat',
-    height: 180,
-    width: 330,
+    resizeMode: 'contain',
+    height: 175,
+    width: 350,
   },
 });

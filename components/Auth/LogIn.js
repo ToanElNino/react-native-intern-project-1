@@ -31,7 +31,6 @@ const LoginLayout = ({navigation}) => {
       })
       .then(response => response)
       .then(responseJson => {
-        // console.log(responseJson.data);
         const tokenAuth = responseJson.data.result.accessToken;
         if (typeof tokenAuth === 'undefined') {
           Alert.alert('Wrong email or password');
